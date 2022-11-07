@@ -13,32 +13,44 @@
 
         public function index(){
           
+            $topicManager = new TopicManager();
 
-           $topicManager = new TopicManager();
-
-            return [
-                "view" => VIEW_DIR."forum/listTopics.php",
-                "data" => [
-                    "topics" => $topicManager->findAll(["dateTopic", "DESC"])
-                ]
-            ];
+                return [
+                    "view" => VIEW_DIR."forum/listTopics.php",
+                    "data" => [
+                        "topics" => $topicManager->findAll(["dateTopic", "DESC"])
+                    ]
+                ];
         
         }
+
         public function listCategories(){
           
+            $categorieManager = new CategorieManager();
 
-        $categorieManager = new CategorieManager();
-
-            return [
-                "view" => VIEW_DIR."forum/listcategories.php",
-                "data" => [
-                    "categories" => $categorieManager->findAll(["libelle", "DESC"])
-                ]
-            ];
+                return [
+                    "view" => VIEW_DIR."forum/listcategories.php",
+                    "data" => [
+                        "categories" => $categorieManager->findAll(["libelle", "DESC"])
+                    ]
+                ];
         
         }
 
+        public function listPosts(){
 
+            $postManager =new PostManager();
+            $topicManager = new TopicManager();
+
+                return [
+                    "view" => VIEW_DIR. "forum/listPosts",
+                    "data" => [
+                        "posts" => $topicManager->findPostsByTopic($id),
+                        "topic" => $postManager->findOneById($id)
+                    ]
+
+                    ];
+        }
         
 
     }

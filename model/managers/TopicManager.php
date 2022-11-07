@@ -5,6 +5,7 @@
     use App\DAO;
     // use Model\Managers\TopicManager;
 
+    // Classe fille Hérite en étendant la Classe Mère
     class TopicManager extends Manager{
 
         protected $className = "Model\Entities\Topic";

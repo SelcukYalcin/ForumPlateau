@@ -5,6 +5,7 @@ namespace Model\Managers;
 use App\Manager;
 use App\DAO;
 
+// Classe fille Hérite en étendant la Classe Mère
 class UserManager extends Manager
 {
 

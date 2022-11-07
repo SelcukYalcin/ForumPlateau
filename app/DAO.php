@@ -9,7 +9,9 @@
      * @method static connect() connexion à la BDD
      * @method static insert() requètes d'insertion dans la BDD
      * @method static select() requètes de sélection
-     */
+     */    
+    // Une classe abstraite est une classe qui ne peut pas être instanciée. 
+    // On peut donc dire qu'elle sert de modèle aux classes qui en hériteront
     abstract class DAO{
 
         private static $host   = 'mysql:host=127.0.0.1;port=3306';

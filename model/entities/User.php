@@ -2,7 +2,8 @@
     namespace Model\Entities;
 
     use App\Entity;
-
+    
+//     il n’est pas possible d’effectuer de l’héritage sur cette classe
     final class User extends Entity{
 
         private $id;

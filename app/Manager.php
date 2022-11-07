@@ -1,6 +1,7 @@
 <?php
     namespace App;
-
+    // Une classe abstraite est une classe qui ne peut pas être instanciée. 
+    // On peut donc dire qu'elle sert de modèle aux classes qui en hériteront
     abstract class Manager{
 
         protected function connect(){

@@ -4,6 +4,7 @@
     use App\Manager;
     use App\DAO;
 
+    // Classe fille Hérite en étendant la Classe Mère
     class PostManager extends Manager{
 
         protected $className = "Model\Entities\Post";
