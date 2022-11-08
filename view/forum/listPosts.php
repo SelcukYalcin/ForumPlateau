@@ -5,14 +5,13 @@ $topic = $result["data"]['topic'];
 
 ?>
 
-<h1>Posts du Topic: </h1>
-<h2><?=$topic?></h2><??>
+<h1>Posts du Topic "<?=$topic?>" :</h1>
 
 <?php
     foreach($posts as $post ){
 ?>
             <br><?=$post->getTexte()?><br> 
-            Ajouté le : <?=$post->getDatePost()?><br>      
+            <p>Ajouté le : <?=$post->getDatePost()?><br><p>      
         
     <?php
 }
