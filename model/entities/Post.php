@@ -49,9 +49,9 @@
          *
          * @return  self
          */ 
-        public function setTexte($texte)
+        public function setTexte($newTexte)
         {
-                $this->texte = $texte;
+                $this->texte = $newTexte;
 
                 return $this;
         }
@@ -69,9 +69,9 @@
          *
          * @return  self
          */ 
-        public function setUser($user)
+        public function setUser($newUser)
         {
-                $this->user = $user;
+                $this->user = $newUser;
 
                 return $this;
         }
@@ -99,9 +99,9 @@
          *
          * @return  self
          */ 
-        public function setTopic($topic)
+        public function setTopic($newTopic)
         {
-                $this->topic = $topic;
+                $this->topic = $newTopic;
 
                 return $this;
         }

@@ -40,10 +40,13 @@
             $topicManager = new TopicManager();
             $categorieManager = new CategorieManager();
 
+            
+
                 return [
                     "view" => VIEW_DIR. "forum/listTopics.php",
                     "data" => [
-                        "topics" => $topicManager->findTopicByCategorieID($id)
+                        "topics" => $topicManager->findTopicByCategorieID($id),
+                        "categorie" => $categorieManager->findOneById($id),
                         
                     ]
                 ];
@@ -56,11 +59,14 @@
             $postManager =new PostManager();
             $topicManager = new TopicManager();
 
+            
+
                 return [
                     "view" => VIEW_DIR. "forum/listPosts.php",
                     "data" => [
-                        "posts" => $postManager->findPostsByTopicID($id, "datePost", "ASC")
-                    ]
+                        "posts" => $postManager->findPostsByTopicID($id, "datePost", "ASC"),
+                        "topic" => $topicManager->findOneById($id),
+                        ]
 
                 ];
 

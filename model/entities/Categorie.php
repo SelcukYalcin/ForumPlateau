@@ -55,6 +55,6 @@
 
         public function __toString()
         {
-            return $this->text;
+            return $this->libelle;
         }
     }

@@ -21,8 +21,8 @@ class UserManager extends Manager
     public function findOneByEmail($email){
 
         $sql = "SELECT *
-                FROM ".$this->tableName." a
-                WHERE a.email = :email";
+                FROM ".$this->tableName." u
+                WHERE u.email = :email";
 
         return $this->getOneOrNullResult(
             DAO::select($sql, ['email' => $email], false), 
@@ -33,8 +33,8 @@ class UserManager extends Manager
     public function findOneByUser($nickname){
 
         $sql = "SELECT *
-                FROM ".$this->tableName." a
-                WHERE a.nickname = :nickname";
+                FROM ".$this->tableName." u
+                WHERE u.nickname = :nickname";
 
         return $this->getOneOrNullResult(
             DAO::select($sql, ['nickname' => $nickname], false), 
@@ -45,8 +45,8 @@ class UserManager extends Manager
     public function retrievePassword($email){
 
         $sql = "SELECT *
-        FROM ".$this->tableName." a
-        WHERE a.email = :email";
+        FROM ".$this->tableName." u
+        WHERE u.email = :email";
 
         return $this->getOneOrNullResult(
             DAO::select($sql, ['email' => $email], false), 

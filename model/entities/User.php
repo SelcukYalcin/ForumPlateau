@@ -15,8 +15,7 @@
 
         public function __construct($data){         
             $this->hydrate($data);        
-        }
- 
+        } 
         /**
          * Get the value of id
          */ 
@@ -24,7 +23,6 @@
         {
                 return $this->id;
         }
-
         /**
          * Set the value of id
          *
@@ -33,10 +31,8 @@
         public function setId($id)
         {
                 $this->id = $id;
-
                 return $this;
         }
-
         /**
          * Get the value of nickname
          */ 
@@ -44,19 +40,16 @@
         {
                 return $this->nickname;
         }
-
         /**
          * Set the value of nickname
          *
          * @return  self
          */ 
-        public function setNickname($nickname)
+        public function setNickname($newNickname)
         {
-                $this->nickname = $nickname;
-
+                $this->nickname = $newNickname;
                 return $this;
         }
-
         /**
          * Get the value of email
          */ 
@@ -64,29 +57,24 @@
         {
                 return $this->email;
         }
-
         /**
          * Set the value of email
          *
          * @return  self
          */ 
-        public function setEmail($email)
+        public function setEmail($newEmail)
         {
-                $this->email = $email;
-
+                $this->email = $newEmail;
                 return $this;
         }
-
-        public function getDateInscription(){
+       public function getDateInscription(){
             $formattedDate = $this->dateInscription->format("d/m/Y, H:i:s");
             return $formattedDate;
         }
-
         public function setDateInscription($date){
             $this->dateInscription = new \DateTime($date);
             return $this;
         }
-
         /**
          * Get the value of password
          */ 
@@ -94,40 +82,33 @@
         {
                 return $this->password;
         }
-
         /**
          * Set the value of password
          *
          * @return  self
          */ 
-        public function setPassword($password)
+        public function setPassword($newPassword)
         {
-                $this->password = $password;
-
+                $this->password = $newPassword;
                 return $this;
         }
-
-        // * Get the value of role
-        
+        // * Get the value of role      
         public function getRole()
         {
                 return $this->role;
         }
-
         /**
          * Set the value of role
          *
          * @return  self
          */ 
-        public function setRole($role)
+        public function setRole($newRole)
         {
-                $this->role = $role;
-
+                $this->role = $newRole;
                 return $this;
         }
-
         public function __toString()
         {
                 return $this->nickname;
         }
-    }
+}

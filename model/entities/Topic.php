@@ -13,10 +13,10 @@
         private $closed;
         private $nbPosts;
 
-        public function __construct($data){         
+        public function __construct($data)
+        {         
             $this->hydrate($data);        
         }
- 
         /**
          * Get the value of id
          */ 
@@ -24,7 +24,6 @@
         {
                 return $this->id;
         }
-
         /**
          * Set the value of id
          *
@@ -33,10 +32,8 @@
         public function setId($id)
         {
                 $this->id = $id;
-
                 return $this;
         }
-
         /**
          * Get the value of title
          */ 
@@ -44,19 +41,16 @@
         {
                 return $this->title;
         }
-
         /**
          * Set the value of title
          *
          * @return  self
          */ 
-        public function setTitle($title)
+        public function setTitle($newTitle)
         {
-                $this->title = $title;
-
+                $this->title = $newTitle;
                 return $this;
         }
-
         /**
          * Get the value of user
          */ 
@@ -64,41 +58,35 @@
         {
                 return $this->user;
         }
-
         /**
          * Set the value of user
          *
          * @return  self
          */ 
-        public function setUser($user)
+        public function setUser($newUser)
         {
-                $this->user = $user;
-
+                $this->user = $newUser;
                 return $this;
         }
-
-        public function getDateTopic(){
+        public function getDateTopic()
+        {
             $formattedDate = $this->dateTopic->format("d/m/Y, H:i:s");
             return $formattedDate;
         }
-
-        public function setDateTopic($date){
+        public function setDateTopic($date)
+        {
             $this->dateTopic = new \DateTime($date);
             return $this;
         }
-
         public function getNbPosts()
         {
                 return $this->nbPosts;
         }
-
         public function setNbPosts($nbPosts)
         {
-                $this->nbPosts = $nbPosts;
-
+                $this->nbPosts = $newNbPosts;
                 return $this;
         }
-
         /**
          * Get the value of closed
          */ 
@@ -106,19 +94,16 @@
         {
                 return $this->closed;
         }
-
         /**
          * Set the value of closed
          *
          * @return  self
          */ 
-        public function setClosed($closed)
+        public function setClosed($newClosed)
         {
-                $this->closed = $closed;
-
+                $this->closed = $newClosed;
                 return $this;
         }
-
         public function __toString()
         {
                 return $this->title;
