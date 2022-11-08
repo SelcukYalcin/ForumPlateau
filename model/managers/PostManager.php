@@ -20,8 +20,7 @@
             $sql = "SELECT * 
                     FROM ".$this->tableName." p 
                     WHERE p.topic_id = :id
-                    ";
-                    // ORDER BY datePost asc
+                    ORDER BY datePost ASC ";
                     
            
             return  $this->getMultipleResults(

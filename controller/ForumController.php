@@ -59,8 +59,7 @@
                 return [
                     "view" => VIEW_DIR. "forum/listPosts.php",
                     "data" => [
-                        // "topics" => $topicManager->findOneById($id),
-                        "posts" => $postManager->findPostsByTopicID($id)
+                        "posts" => $postManager->findPostsByTopicID($id, "datePost", "ASC")
                     ]
 
                 ];

@@ -19,7 +19,8 @@
         public function findTopicByCategorieID($id){
             $sql = "SELECT *
                     FROM ".$this->tableName." t 
-                    WHERE t.categorie_id = :id";
+                    WHERE t.categorie_id = :id
+                    ORDER BY dateTopic DESC";
 
             return $this->getMultipleResults(
                 DAO::select($sql,['id' => $id]),
