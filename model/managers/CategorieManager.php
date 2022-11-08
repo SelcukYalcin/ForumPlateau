@@ -23,6 +23,7 @@ class CategorieManager extends Manager
         $sql = "SELECT *
                 FROM ".$this->tableName." c
                 WHERE c.libelle = :libelle";
+                
 
         return $this->getOneOrNullResult(
             DAO::select($sql, ['libelle' => $libelle], false), 

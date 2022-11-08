@@ -1,7 +1,7 @@
 <?php
 
 $topics = $result["data"]['topics'];
-    
+$categorie = $result["data"]['categories']    
 ?>
 
 <h1>Liste des  Topics</h1>
@@ -10,8 +10,9 @@ $topics = $result["data"]['topics'];
 foreach($topics as $topic ){
 
     ?>
-    <p><?=$topic->getTitle()?> by <?=$topic->getUser()?></p>
-
+    <a href="index.php?ctrl=forum&action=listPosts&id=<?=$topic->getId()?>">
+    <p> <br><?=$topic->getTitle()?> <?=$topic->getDateTopic()?></p>
+    </a>
     <?php
 }
 

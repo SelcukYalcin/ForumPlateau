@@ -18,7 +18,7 @@
                 return [
                     "view" => VIEW_DIR."forum/listTopics.php",
                     "data" => [
-                        "topics" => $topicManager->findAll(["dateTopic", "DESC"])
+                        "topics" => $topicManager->findTopicByCategorieID(["dateTopic", "DESC"])
                     ]
                 ];
         
@@ -29,28 +29,41 @@
             $categorieManager = new CategorieManager();
 
                 return [
-                    "view" => VIEW_DIR."forum/listcategories.php",
+                    "view" => VIEW_DIR."forum/listCategories.php",
                     "data" => [
-                        "categories" => $categorieManager->findAll(["libelle", "DESC"])
+                        "categories" => $categorieManager->findAll(["libelle", "ASC"])
                     ]
                 ];
         
         }
+        public function listTopics($id){
+            $topicManager = new TopicManager();
+            $categorieManager = new CategorieManager();
 
-        public function listPosts(){
+                return [
+                    "view" => VIEW_DIR. "forum/listTopics.php",
+                    "data" => [
+                        "topics" => $topicManager->findTopicByCategorieID($id)
+                        
+                    ]
+                ];
+        }
+        
+        
+
+        public function listPosts($id){
 
             $postManager =new PostManager();
             $topicManager = new TopicManager();
 
                 return [
-                    "view" => VIEW_DIR. "forum/listPosts",
+                    "view" => VIEW_DIR. "forum/listPosts.php",
                     "data" => [
-                        "posts" => $topicManager->findPostsByTopic($id),
-                        "topic" => $postManager->findOneById($id)
+                        // "topics" => $topicManager->findOneById($id),
+                        "posts" => $postManager->findPostsByTopicID($id)
                     ]
 
-                    ];
-        }
-        
+                ];
 
+        }
     }

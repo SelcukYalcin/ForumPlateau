@@ -15,13 +15,14 @@
             parent::connect();
         }
 
-        public function findPostsByTopic($id) {
+        public function findPostsByTopicID($id) {
 
             $sql = "SELECT * 
                     FROM ".$this->tableName." p 
-                    WHERE p.topic_id = :id";
-
-            // var_dump($sql); die;
+                    WHERE p.topic_id = :id
+                    ";
+                    // ORDER BY datePost asc
+                    
            
             return  $this->getMultipleResults(
                 DAO::select($sql, ['id' => $id]), 
