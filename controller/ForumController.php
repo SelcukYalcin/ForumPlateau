@@ -89,7 +89,6 @@
                 $postManager->add(["topic_id" => $id_topic, "user_id" => $user, "texte" => $texte]);
 
                 $this->redirectTo("forum", "listTopics", $id);
-                // test
                 
             }
 
@@ -100,5 +99,18 @@
             $topicManager = new TopicManager();
             $postManager = new PostManager();
 
-    }
+            $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $user = 1;
+            if($texte){
+
+                $newPost= ["texte" => $texte, "user_id" => $user, "topic_id" => $id, ];
+                $id_post = $postManager ->add($newPost);
+
+                $this->redirectTo("forum", "listPosts", $id);
+            }
+        }
+                
+
+
+    
 }
