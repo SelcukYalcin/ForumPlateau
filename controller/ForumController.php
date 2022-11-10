@@ -67,26 +67,28 @@
 
         }
 
-        public function addTopic($id){
-
+        public function addTopic($id)
+        {
             $topicManager = new TopicManager();
             $postManager = new PostManager();
 
-            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $user = 1;
-            
-            if($title && $texte){
-
-                $newTopic= ["title"=> $title, "user_id"=> $user, "categorie_id" => $id];
-                $id_topic = $topicManager ->add($newTopic);
-
-                $postManager->add(["topic_id" => $id_topic, "user_id" => $user, "texte" => $texte]);
-
-                $this->redirectTo("forum", "listTopics", $id);
+                $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $user = 1;
                 
-            }
+                if($title && $texte)
+                {
+                    $newTopic = ["title"=> $title, "user_id"=> $user, "categorie_id" => $id];
+                    
+                    $topicId = $topicManager->add($newTopic);  
 
+                    $newPost=["texte"=>$texte,"topic_id"=>$topicId ,"user_id"=>$user];
+                    $postManager->add($newPost);  
+                    $this->redirectTo("forum", "listTopics", $id);
+                }else{
+                }
+                
+            
         }
 
         public function addPost($id){
@@ -99,7 +101,7 @@
             if($texte){
 
                 $newPost= ["texte" => $texte, "user_id" => $user, "topic_id" => $id, ];
-                $id_post = $postManager ->add($newPost);
+                $postManager ->add($newPost);
 
                 $this->redirectTo("forum", "listPosts", $id);
             }
