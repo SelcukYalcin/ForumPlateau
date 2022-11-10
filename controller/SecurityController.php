@@ -12,8 +12,11 @@
     class HomeController extends AbstractController implements ControllerInterface{
 
         public function index(){
-
-            $user = new UserManager();
-
+            
+           
+            return [
+                "view" => VIEW_DIR."home.php"
+            ];
         }
     }
+        

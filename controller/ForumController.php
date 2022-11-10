@@ -12,16 +12,11 @@
     class ForumController extends AbstractController implements ControllerInterface{
 
         public function index(){
-          
-            $topicManager = new TopicManager();
-
-                return [
-                    "view" => VIEW_DIR."forum/listTopics.php",
-                    "data" => [
-                        "topics" => $topicManager->findTopicByCategorieID(["dateTopic", "DESC"])
-                    ]
-                ];
-        
+            
+           
+            return [
+                "view" => VIEW_DIR."home.php"
+            ];
         }
 
         public function listCategories(){
