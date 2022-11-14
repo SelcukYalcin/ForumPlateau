@@ -12,20 +12,18 @@ class CategorieManager extends Manager
     protected $className = "Model\Entities\Categorie";
     protected $tableName = "Categorie";
 
-
+    // CONSTRUCTEUR
     public function __construct()
     {
         parent::connect();
     }
 
+    // RECUPERER UNE CATEGORIE SELON LE LIBELLE
     public function findOneByLibelle($libelle){
-
         $sql = "SELECT *
                 FROM ".$this->tableName." c
-                WHERE c.libelle = :libelle";
-                
-
-        return $this->getOneOrNullResult(
+                WHERE c.libelle = :libelle";           
+            return $this->getOneOrNullResult(
             DAO::select($sql, ['libelle' => $libelle], false), 
             $this->className
         );

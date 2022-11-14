@@ -11,11 +11,12 @@
         protected $className = "Model\Entities\Topic";
         protected $tableName = "topic";
 
-
+        // CONSTRUCTEUR
         public function __construct(){
             parent::connect();
         }
 
+        // RECUPERER UN TOPIC SELON LA CATEGORIE
         public function findTopicByCategorieID($id){
             $sql = "SELECT *
                     FROM ".$this->tableName." t 

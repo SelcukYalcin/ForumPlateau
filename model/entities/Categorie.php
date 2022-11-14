@@ -9,50 +9,34 @@
         private $id;
         private $libelle;
 
+        // CONSTRUCTEUR
         public function __construct($data){         
             $this->hydrate($data);        
         }
  
-        /**
-         * Get the value of id
-         */ 
+        // ID
         public function getId()
         {
                 return $this->id;
         }
-
-        /**
-         * Set the value of id
-         *
-         * @return  self
-         */ 
         public function setId($id)
         {
                 $this->id = $id;
-
                 return $this;
         }
 
-        /**
-         * Get the value of libelle
-         */ 
+        // LIBELLE
         public function getLibelle()
         {
                 return $this->libelle;
         }
-
-        /**
-         * Set the value of libelle
-         *
-         * @return  self
-         */ 
         public function setLibelle($libelle)
         {
                 $this->libelle = $libelle;
-
                 return $this;
         }
 
+        // TO_STRING
         public function __toString()
         {
             return $this->libelle;

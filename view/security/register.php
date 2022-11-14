@@ -1,6 +1,7 @@
 
 <h1>S'INSCRIRE</h1>
 
+<!-- FORMULAIRE D'INSCRIPTION -->
 <form action="\ForumPlateau/index.php?ctrl=security&action=register" method="post">
     <div class="inscription">
         <h2>INSCRIPTION</h2>

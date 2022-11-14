@@ -13,61 +13,46 @@
         private $closed;
         private $nbPosts;
 
+        // CONSTRUCTEUR
         public function __construct($data)
         {         
             $this->hydrate($data);        
         }
-        /**
-         * Get the value of id
-         */ 
+
+        // ID
         public function getId()
         {
                 return $this->id;
         }
-        /**
-         * Set the value of id
-         *
-         * @return  self
-         */ 
         public function setId($id)
         {
                 $this->id = $id;
                 return $this;
         }
-        /**
-         * Get the value of title
-         */ 
+
+        // TITLE
         public function getTitle()
         {
                 return $this->title;
-        }
-        /**
-         * Set the value of title
-         *
-         * @return  self
-         */ 
+        } 
         public function setTitle($newTitle)
         {
                 $this->title = $newTitle;
                 return $this;
         }
-        /**
-         * Get the value of user
-         */ 
+
+        // USER
         public function getUser()
         {
                 return $this->user;
         }
-        /**
-         * Set the value of user
-         *
-         * @return  self
-         */ 
         public function setUser($newUser)
         {
                 $this->user = $newUser;
                 return $this;
         }
+
+        // DATE_TOPIC
         public function getDateTopic()
         {
             $formattedDate = $this->dateTopic->format("d/m/Y, H:i:s");
@@ -78,6 +63,8 @@
             $this->dateTopic = new \DateTime($date);
             return $this;
         }
+
+        // NB_POSTS
         public function getNbPosts()
         {
                 return $this->nbPosts;
@@ -87,23 +74,19 @@
                 $this->nbPosts = $newNbPosts;
                 return $this;
         }
-        /**
-         * Get the value of closed
-         */ 
+
+        // CLOSED
         public function getClosed()
         {
                 return $this->closed;
         }
-        /**
-         * Set the value of closed
-         *
-         * @return  self
-         */ 
         public function setClosed($newClosed)
         {
                 $this->closed = $newClosed;
                 return $this;
         }
+
+        // TO_STRING
         public function __toString()
         {
                 return $this->title;
