@@ -15,7 +15,6 @@
         public function index()
         {           
             $topicManager = new TopicManager();
-
             return [
                 "view" => VIEW_DIR."forum/listTopicsByCategorie.php",
                 "data" => [

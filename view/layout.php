@@ -17,7 +17,6 @@
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
 
-
             <header>
                 <nav>
                     <div id="nav-left">
@@ -37,13 +36,13 @@
                         if(App\Session::getUser()){
                             ?>
                             <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
-                            <a href="/security/logout.html">Déconnexion</a>
+                            <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                             <?php
                         }
                         else{
                             ?>
-                            <a href="./view/security/login.php">Connexion</a><br>
-                            <a href="./view/security/register.php">Inscription</a><br>
+                            <a href="index.php?ctrl=security&action=login">Connexion</a><br>
+                            <a href="index.php?ctrl=security&action=register">Inscription</a><br>
                             <a href="index.php?ctrl=forum&action=listCategories">La Liste des Catégories</a><br>
                         <?php
                         }

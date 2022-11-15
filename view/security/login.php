@@ -2,7 +2,7 @@
 <h1>CONNEXION</h1>
 
 <!-- FORMULAIRE DE CONNEXION -->
-<form action="index.php?ctrl=security&action=login" method="post">
+<form action="/ForumPlateau/index.php?ctrl=security&action=login" method="post">
     <div>
         <label for=""><b>E-Mail</b></label><br>
         <input type="email" name="email" placeholder="Enter E-mail" required/><br>

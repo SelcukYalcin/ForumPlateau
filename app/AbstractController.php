@@ -14,7 +14,7 @@
                 $url.= $id ? "&id=" . $id : "";
                 // $url.= ".html";
             }
-            else $url = "/ForumPlateau";
+            else $url = "/ForumPlateau/";
             header("Location: $url");
             die();
 

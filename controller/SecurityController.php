@@ -58,7 +58,7 @@
             // SI LA SUPERGLOBALE "$_POST" CONTIENT DES INFORMATIONS ALORS ON LES FILTRE---------->
             if(isset($_POST['subLogin'])){
                 $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
-                $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $password = $_POST["password"];                
                 // SI LES FILTRES SONT VALIDES
                 if ($email && $password)
                 {
@@ -71,18 +71,27 @@
                         $passwordHash = $newPassword->getPassword();
                         // RETROUVER L'UTILISATEUR PAR SON EMAIL 
                         $user = $userManager->findOneByEmail($email);
+                       
                         // VERIFICATION DU PASSWORD PAR RAPPORT AU PASSWORD HACHE---------->
                         if (password_verify($password, $passwordHash)){
                             // PLACER L'UTILISATEUR EN SESSION---------->
                             Session::setUser($user);
-                            return
-                            [
-                                "view" => VIEW_DIR . "home.php",
-                                "data" => ["user" => $user,]
-                            ];                            
-                        }
+                            // var_dump($_SESSION); die ;
+                            $this->redirectTo("home");
+                        }   
                     }
                 }
-            }return ["view" => VIEW_DIR . "security/login.php"];       
+            }
+            return ["view" => VIEW_DIR . "security/login.php"];       
+        }
+        // CREATION DE LA FONCTION DECONNEXION
+        public function logout() 
+        {       
+            if (isset($_SESSION['user'])) 
+            {
+            $_SESSION['user'] = null ;
+            Session::addFlash('success', 'DECONNEXION EFFECTUE');
+            return ["view" => VIEW_DIR . "home.php"];
+            }
         }
     }
