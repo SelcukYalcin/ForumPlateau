@@ -35,7 +35,7 @@
             ];       
         }
 
-        public function listTopicsByCategorie($id)
+        public function listTopicsByIdCategorie($id)
         {
             $topicManager = new TopicManager();
             $categorieManager = new CategorieManager();
@@ -54,7 +54,7 @@
         {
             $postManager =new PostManager();
             $topicManager = new TopicManager();
-            $posts = $postManager->findPostsByIdTopicID($id);
+            $posts = $postManager->findPostsByIdTopic($id);
             $topic = $topicManager->findOneById($id);
             return [
                 "view" => VIEW_DIR. "forum/listPostsByIdTopic.php",
