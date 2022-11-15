@@ -16,10 +16,12 @@
             <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
+
+
             <header>
                 <nav>
                     <div id="nav-left">
-                        <a href="">Accueil</a>
+                        <a href="/ForumPlateau/">Accueil</a>
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
@@ -95,7 +97,6 @@
             });
         })
 
-        
 
         /*
         $("#ajaxbtn").on("click", function(){

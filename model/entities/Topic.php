@@ -1,24 +1,21 @@
 <?php
     namespace Model\Entities;
-
     use App\Entity;
     
 //     il n’est pas possible d’effectuer de l’héritage sur cette classe
     final class Topic extends Entity{
-
         private $id;
         private $title;
         private $user;
         private $dateTopic;
         private $closed;
         private $nbPosts;
-
+        private $categorie;
         // CONSTRUCTEUR
         public function __construct($data)
         {         
             $this->hydrate($data);        
         }
-
         // ID
         public function getId()
         {
@@ -29,7 +26,6 @@
                 $this->id = $id;
                 return $this;
         }
-
         // TITLE
         public function getTitle()
         {
@@ -40,7 +36,6 @@
                 $this->title = $newTitle;
                 return $this;
         }
-
         // USER
         public function getUser()
         {
@@ -51,7 +46,6 @@
                 $this->user = $newUser;
                 return $this;
         }
-
         // DATE_TOPIC
         public function getDateTopic()
         {
@@ -63,7 +57,6 @@
             $this->dateTopic = new \DateTime($date);
             return $this;
         }
-
         // NB_POSTS
         public function getNbPosts()
         {
@@ -74,7 +67,6 @@
                 $this->nbPosts = $newNbPosts;
                 return $this;
         }
-
         // CLOSED
         public function getClosed()
         {
@@ -85,7 +77,16 @@
                 $this->closed = $newClosed;
                 return $this;
         }
-
+        // CATEGORIE
+        public function getCategorie()
+        {
+                return $this->categorie;
+        }
+        public function setCategorie($newCategorie)
+        {
+                $this->categorie = $newCategorie;
+                return $this;
+        }
         // TO_STRING
         public function __toString()
         {

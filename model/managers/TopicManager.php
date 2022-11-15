@@ -1,35 +1,30 @@
 <?php
-    namespace Model\Managers;
-    
+    namespace Model\Managers;   
     use App\Manager;
     use App\DAO;
-    // use Model\Managers\TopicManager;
+    use Model\Managers\TopicManager;
 
     // Classe fille Hérite en étendant la Classe Mère
-    class TopicManager extends Manager{
-
+    class TopicManager extends Manager
+    {
         protected $className = "Model\Entities\Topic";
         protected $tableName = "topic";
-
         // CONSTRUCTEUR
-        public function __construct(){
+        public function __construct()
+        {
             parent::connect();
         }
-
         // RECUPERER UN TOPIC SELON LA CATEGORIE
-        public function findTopicByCategorieID($id){
+        public function getTopicsByIdCategiorie($id)
+        {
+            parent::connect();
             $sql = "SELECT *
                     FROM ".$this->tableName." t 
                     WHERE t.categorie_id = :id
                     ORDER BY dateTopic DESC";
-
-            return $this->getMultipleResults(
-                DAO::select($sql,['id' => $id]),
-                $this->className
-            );
+                    return $this->getMultipleResults(
+                        DAO::select($sql,['id' => $id]),
+                        $this->className
+                    );
         }
-
-        
-
-
     }

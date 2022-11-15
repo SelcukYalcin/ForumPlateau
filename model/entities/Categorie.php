@@ -1,19 +1,15 @@
 <?php
     namespace Model\Entities;
-
     use App\Entity;
     
 //     il n’est pas possible d’effectuer de l’héritage sur cette classe
     final class Categorie extends Entity{
-
         private $id;
         private $libelle;
-
         // CONSTRUCTEUR
         public function __construct($data){         
             $this->hydrate($data);        
-        }
- 
+        } 
         // ID
         public function getId()
         {
@@ -24,7 +20,6 @@
                 $this->id = $id;
                 return $this;
         }
-
         // LIBELLE
         public function getLibelle()
         {
@@ -35,7 +30,6 @@
                 $this->libelle = $libelle;
                 return $this;
         }
-
         // TO_STRING
         public function __toString()
         {

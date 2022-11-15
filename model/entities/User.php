@@ -1,22 +1,20 @@
 <?php
     namespace Model\Entities;
-
     use App\Entity;
     
 //     il n’est pas possible d’effectuer de l’héritage sur cette classe
     final class User extends Entity{
-
         private $id;
         private $nickname;
         private $email;
         private $dateInscription;
         private $password;
         private $role;
-
-        public function __construct($data){         
+        // CONSTRUCTEUR
+        public function __construct($data)
+        {         
             $this->hydrate($data);        
         } 
-
         // ID  
         public function getId()
         {
@@ -27,7 +25,6 @@
                 $this->id = $id;
                 return $this;
         }
-
         // NICKNAME
         public function getNickname()
         {
@@ -37,8 +34,7 @@
         {
                 $this->nickname = $newNickname;
                 return $this;
-        }
-        
+        }       
         // EMAIL
         public function getEmail()
         {
@@ -49,7 +45,6 @@
                 $this->email = $newEmail;
                 return $this;
         }
-
         // DATE_INSCRIPTION
         public function getDateInscription(){
             $formattedDate = $this->dateInscription->format("d/m/Y, H:i:s");
@@ -59,7 +54,6 @@
             $this->dateInscription = new \DateTime($date);
             return $this;
         }
-
         // PASSWORD
         public function getPassword()
         {
@@ -70,7 +64,6 @@
                 $this->password = $newPassword;
                 return $this;
         }
-
         // ROLE     
         public function getRole()
         {
@@ -81,12 +74,9 @@
                 $this->role = $newRole;
                 return $this;
         }
-
         // TO_STRING
         public function __toString()
         {
                 return $this->nickname;
-        }
-
-        
+        }      
 }

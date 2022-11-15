@@ -8,106 +8,93 @@
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
     use Model\Managers\CategorieManager;
+    use Model\Managers\UserManager;
 
-    class ForumController extends AbstractController implements ControllerInterface{
+    class ForumController extends AbstractController implements ControllerInterface
+    {
+        public function index()
+        {           
+            $topicManager = new TopicManager();
 
-        public function index(){
-            
-           
             return [
-                "view" => VIEW_DIR."home.php"
+                "view" => VIEW_DIR."forum/listTopicsByCategorie.php",
+                "data" => [
+                    "topics" => $topicManager->findAll(["dateTopic", "DESC"]),
+                ]
             ];
         }
 
-        public function listCategories(){
-          
+        public function listCategories()
+        {          
             $categorieManager = new CategorieManager();
-
-                return [
-                    "view" => VIEW_DIR."forum/listCategories.php",
-                    "data" => [
-                        "categories" => $categorieManager->findAll(["libelle", "ASC"])
-                    ]
-                ];
-        
+            return [
+                "view" => VIEW_DIR."forum/listCategories.php",
+                "data" => [
+                    "categories" => $categorieManager->findAll(["libelle", "ASC"])
+                ]
+            ];       
         }
-        public function listTopics($id){
+
+        public function listTopicsByCategorie($id)
+        {
             $topicManager = new TopicManager();
             $categorieManager = new CategorieManager();
-
-            
-
-                return [
-                    "view" => VIEW_DIR. "forum/listTopics.php",
-                    "data" => [
-                        "topics" => $topicManager->findTopicByCategorieID($id),
-                        "categorie" => $categorieManager->findOneById($id),
-                        
-                    ]
-                ];
+            $topics = $topicManager->getTopicsByIdCategiorie($id);
+            $categorie = $categorieManager->findOneById($id);
+            return [
+                "view" => VIEW_DIR. "forum/listTopicsByIdCategorie.php",
+                "data" => [
+                    "topics" => $topics,
+                    "categorie" => $categorie                       
+                ]
+            ];
         }
         
-        
-
-        public function listPosts($id){
-
+        public function listPostsByIdTopic($id)
+        {
             $postManager =new PostManager();
             $topicManager = new TopicManager();
-
-            
-
-                return [
-                    "view" => VIEW_DIR. "forum/listPosts.php",
-                    "data" => [
-                        "posts" => $postManager->findPostsByTopicID($id, "datePost", "ASC"),
-                        "topic" => $topicManager->findOneById($id),
-                        ]
-
-                ];
-
+            $posts = $postManager->findPostsByIdTopicID($id);
+            $topic = $topicManager->findOneById($id);
+            return [
+                "view" => VIEW_DIR. "forum/listPostsByIdTopic.php",
+                "data" => [
+                    "posts" => $posts,
+                    "topic" => $topic
+                    ]
+            ];
         }
 
         public function addTopic($id)
         {
             $topicManager = new TopicManager();
             $postManager = new PostManager();
-
-                $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $user = 1;
-                
-                if($title && $texte)
-                {
-                    $newTopic = ["title"=> $title, "user_id"=> $user, "categorie_id" => $id];
-                    
-                    $topicId = $topicManager->add($newTopic);  
-
-                    $newPost=["texte"=>$texte,"topic_id"=>$topicId ,"user_id"=>$user];
-                    $postManager->add($newPost);  
-                    $this->redirectTo("forum", "listTopics", $id);
-                }else{
-                }
-                
-            
-        }
-
-        public function addPost($id){
-
-            $topicManager = new TopicManager();
-            $postManager = new PostManager();
-
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $user = 1;
-            if($texte){
+            
+            if($title && $texte)
+            {
+                $newTopic = ["title"=> $title, "user_id"=> $user, "categorie_id" => $id];                   
+                $topicId = $topicManager->add($newTopic);  
+                $newPost=["texte"=>$texte,"topic_id"=>$topicId ,"user_id"=>$user];
+                $postManager->add($newPost);  
+                $this->redirectTo("forum", "listTopicsByIdCategorie", $id);
+            } else{}                           
+        }
 
+        public function addPost($id)
+        {
+            $topicManager = new TopicManager();
+            $postManager = new PostManager();
+            $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $user = 1;
+
+            if($texte)
+            {
                 $newPost= ["texte" => $texte, "user_id" => $user, "topic_id" => $id, ];
                 $postManager ->add($newPost);
-
-                $this->redirectTo("forum", "listPosts", $id);
+                $this->redirectTo("forum", "listPostsByIdTopic", $id);
             }
-        }
-                
-
-
-    
+        }                   
 }
