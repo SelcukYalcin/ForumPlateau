@@ -16,7 +16,7 @@ $topic = $result["data"]['topic'];
                     <h2>Ajouter un  Post</h2>      
                     <form  action="index.php?ctrl=forum&action=addPost&id=<?=$topic->getId()?>" method="post">
                         <label>
-                            <textarea name="text" required></textarea>
+                            <textarea name="texte" required></textarea>
                         </label>
                         <input type="submit" value="AJOUTER">
                     </form>

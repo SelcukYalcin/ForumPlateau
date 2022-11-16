@@ -76,7 +76,6 @@
                         if (password_verify($password, $passwordHash)){
                             // PLACER L'UTILISATEUR EN SESSION---------->
                             Session::setUser($user);
-                            // var_dump($_SESSION); die ;
                             $this->redirectTo("home");
                         }   
                     }

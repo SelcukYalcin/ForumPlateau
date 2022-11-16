@@ -1,13 +1,14 @@
 <?php
 $topics = (!$result["data"]['topics']) ? [] : $result["data"]['topics'];
 $categorie = $result["data"]['categorie'];
+// var_dump($categorie)
 ?>
 
 <h1>Topics de la Catégorie <?= $categorie ?> :</h1>
 <?php
     if(!$topics) 
     {
-        echo "Aucun topic dans cette catégorie";
+        echo "Aucun Topic dans cette Catégorie";
     } 
     else
     {
@@ -20,7 +21,7 @@ $categorie = $result["data"]['categorie'];
                         <i class="fa-solid fa-lock"></i>
                     <?php } else {                          ?>                                     
                         <i class="fa-solid fa-lock-open"></i>
-                    <?php }                 ?>
+                    <?php }                                 ?>
             </a>               
             <p>Ajouté le : <?=$topic->getDateTopic()." by ".$topic->getUser()?></p> 
             <?php 

@@ -29,6 +29,7 @@
                     "users" => $users
                 ]
             ];
+            
         }
 
         public function forumRules()

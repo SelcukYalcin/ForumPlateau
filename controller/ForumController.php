@@ -23,6 +23,18 @@
             ];
         }
 
+        public function ajoutCategorie()
+        {
+            $categorieManager = new CategorieManager();
+            $libelle = filter_input(INPUT_POST, "libelle", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if($libelle)
+            {
+                $newCategorie = ["libelle"=> $libelle];
+                $categorieId = $categorieManager->add($newCategorie);
+                $this->redirectTo("forum", "listCategories");
+            }
+
+        }
         public function listCategories()
         {          
             $categorieManager = new CategorieManager();
@@ -70,7 +82,7 @@
             $postManager = new PostManager();
             $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $user = 1;
+            $user = \App\Session::getUser()->getId();
             
             if($title && $texte)
             {
@@ -79,7 +91,6 @@
                 $newPost=["texte"=>$texte, "topic_id"=>$topicId , "user_id"=>$user];
                 $postManager->add($newPost);  
                 $this->redirectTo("forum", "listTopicsByIdCategorie", $id);
-                // Session::addFlash('success', "Topic ajouté avec Succès !");
             } else{}                           
         }
 
@@ -88,14 +99,29 @@
             $topicManager = new TopicManager();
             $postManager = new PostManager();
             $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $user = 1;
+            $user = \App\Session::getUser()->getId();
 
             if($texte)
             {
                 $newPost= ["texte" => $texte, "user_id" => $user, "topic_id" => $id];
                 $postManager ->add($newPost);
                 $this->redirectTo("forum", "listPostsByIdTopic", $id);
-                // Session::addFlash('success', "Message ajouté avec Succès !");
             }
-        }                   
+        } 
+        
+        public function editCategorie($id) {
+            $categorieManager = new CategorieManager();          
+            $libelle = filter_input(INPUT_POST, "libelle", FILTER_SANITIZE_SPECIAL_CHARS);
+            var_dump($libelle); die;
+            if($libelle) {
+                $categorieManager->editCategorie($id, $libelle);
+                $this->redirectTo("forum","listCategories");
+            }
+
+            return [
+                "view" => VIEW_DIR."forum/editionCategorie.php",
+                "data" => ["categorie" => $categorieManager->findOneById($id)]
+            ];
+        }
+        
 }

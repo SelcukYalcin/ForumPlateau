@@ -20,11 +20,11 @@
             <header>
                 <nav>
                     <div id="nav-left">
-                        <a href="/ForumPlateau/">Accueil</a>
+                        <a href="/ForumPlateau/"><h1>Accueil</h1></a><br>
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
-                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
+                            <a href="index.php?ctrl=home&action=users"><h2>Voir la liste des gens</h2></a>
                           
                             <?php
                         }
@@ -35,7 +35,8 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                            <a href="index.php?ctrl=forum&action=listCategories"><h1>La Liste des Catégories</h1></a><br>
+                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a><br>
                             <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                             <?php
                         }

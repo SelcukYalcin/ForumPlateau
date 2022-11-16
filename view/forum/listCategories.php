@@ -9,7 +9,9 @@ foreach($categories as $categorie ){
 ?>
     <a href="index.php?ctrl=forum&action=listTopicsByIdCategorie&id=<?=$categorie->getId()?>">
     <h2><?=$categorie->getLibelle()?></h2>
-    </a>
+    </a><br>
+    <a href="index.php?ctrl=forum&action=editCategorie&Id=<?=$categorie->getId()?>">Modifier Une Catégorie</a>
+
     <?php } ?>
 
     <div >
