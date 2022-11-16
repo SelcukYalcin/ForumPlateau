@@ -19,6 +19,67 @@
 CREATE DATABASE IF NOT EXISTS `bdd_forum` /*!40100 DEFAULT CHARACTER SET latin1 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `bdd_forum`;
 
+-- Listage de la structure de table bdd_forum. categorie
+CREATE TABLE IF NOT EXISTS `categorie` (
+  `id_categorie` int NOT NULL AUTO_INCREMENT,
+  `libelle` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`id_categorie`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
+-- Listage des données de la table bdd_forum.categorie : ~2 rows (environ)
+INSERT INTO `categorie` (`id_categorie`, `libelle`) VALUES
+	(1, 'Sport'),
+	(2, 'Cinéma');
+
+-- Listage de la structure de table bdd_forum. post
+CREATE TABLE IF NOT EXISTS `post` (
+  `id_post` int NOT NULL AUTO_INCREMENT,
+  `texte` text CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `datePost` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int NOT NULL,
+  `topic_id` int NOT NULL,
+  PRIMARY KEY (`id_post`) USING BTREE,
+  KEY `user_id` (`user_id`),
+  KEY `topic_id` (`topic_id`),
+  CONSTRAINT `topic_id` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`),
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
+-- Listage des données de la table bdd_forum.post : ~9 rows (environ)
+INSERT INTO `post` (`id_post`, `texte`, `datePost`, `user_id`, `topic_id`) VALUES
+	(1, 'Mercredi soir, le PSG est allé chercher un succès prestigieux sur la pelouse de la Juventus (2-1) avec un Kylian Mbappé buteur, ce qui n\'a pas empêché la déception de terminer deuxième de la poule, doublé in extremis par Benfica. Un Kylian Mbappé qui a néanmoins profité de la soirée pour afficher sa proximité avec un crack du camp d\'en face.', '2022-11-04 11:40:45', 1, 1),
+	(2, 'Le PSG va encore pleurer en Ligue des champions', '2022-11-04 11:42:52', 1, 1),
+	(3, 'La Ligue des champions de l\'UEFA, parfois abrégée en C1 et anciennement dénommée Coupe des clubs champions européens, est une compétition annuelle de football organisée par l\'Union des associations européennes de football et regroupant les meilleurs clubs du continent européen', '2022-11-04 11:44:19', 1, 2),
+	(4, 'Après leur première défaite de la saison en Championnat, Nantes tombe à Barcelone en Ligue des champions', '2022-11-04 11:46:40', 1, 2),
+	(5, 'Dans l\'ancien Kahndaq, Teth Adam a reçu les pouvoirs tout-puissants des dieux. Après avoir utilisé ces pouvoirs pour se venger, il a été emprisonné, devenant Black Adam. Près de 5 000 ans se sont écoulés et Black Adam est passé de l\'homme au mythe puis à la légende.', '2022-11-04 11:51:03', 2, 3),
+	(6, 'Un très bon film, j\'ai grandi avec les Comics j\'y retrouve l\'état d\'esprit que j\'y trouvais.\r\nAprès, effectivement, on est loin du wokisme actuel .. Et ça fait ÉNORMÉMENT de bien... ', '2022-11-04 11:52:23', 2, 3),
+	(7, 'La reine Ramonda, Shuri, M\'Baku, Okoye et la Dora Milaje se battent pour protéger leur nation des puissances mondiales intervenantes à la suite de la mort du roi T\'Challa', '2022-11-04 11:53:33', 2, 4),
+	(8, 'Sortie le 09 novembre 2022. Action, Aventure, Fantastique (2h41). De Ryan Coogler. Avec Letitia Wright, Lupita Nyong\'o, ...', '2022-11-04 11:55:19', 2, 4),
+	(14, 'e', '2022-11-16 00:04:18', 1, 12);
+
+-- Listage de la structure de table bdd_forum. topic
+CREATE TABLE IF NOT EXISTS `topic` (
+  `id_topic` int NOT NULL AUTO_INCREMENT,
+  `categorie_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `dateTopic` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `closed` tinyint DEFAULT '0',
+  PRIMARY KEY (`id_topic`) USING BTREE,
+  KEY `categorie_id` (`categorie_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `FK_topic_categorie` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id_categorie`),
+  CONSTRAINT `FK_topic_users` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+
+-- Listage des données de la table bdd_forum.topic : ~5 rows (environ)
+INSERT INTO `topic` (`id_topic`, `categorie_id`, `user_id`, `title`, `dateTopic`, `closed`) VALUES
+	(1, 1, 1, 'PSG', '2022-11-04 11:32:12', 0),
+	(2, 1, 1, 'Champions League', '2022-11-04 11:34:25', 1),
+	(3, 2, 1, 'Black Adam', '2022-11-04 11:37:08', 0),
+	(4, 2, 1, 'Black Panther: Wakanda Forever', '2022-11-04 11:38:17', 1),
+	(12, 1, 1, 'e', '2022-11-16 00:04:18', 0);
+
 -- Listage de la structure de table bdd_forum. user
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int NOT NULL AUTO_INCREMENT,
@@ -28,13 +89,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `role` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `dateInscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table bdd_forum.user : ~3 rows (environ)
+-- Listage des données de la table bdd_forum.user : ~0 rows (environ)
 INSERT INTO `user` (`id_user`, `nickname`, `email`, `password`, `role`, `dateInscription`) VALUES
-	-- (1, 'selcuk', 'selcuk@gmail.com', '070879', 'user', '2022-11-04 11:30:57'),
-	-- (2, 'yalcin', 'yalcin@gmail.com', '070879', 'user', '2022-11-04 11:50:01'),
-	(3, 'test', 'test@test.fr', '$2y$10$3nt.Szlv0TVsu.PN1tRVJ.eH8iIneg32tXmOy8fE8jLNoemmojvVq', NULL, '2022-11-15 15:28:15');
+	(1, 'selcuk', 'selcuk@gmail.com', '070879', 'user', '2022-11-04 11:30:57'),
+	(2, 'yalcin', 'yalcin@gmail.com', '070879', 'user', '2022-11-04 11:50:01'),
+	(3, 'test', 'test@test.fr', '$2y$10$3nt.Szlv0TVsu.PN1tRVJ.eH8iIneg32tXmOy8fE8jLNoemmojvVq', 'user', '2022-11-15 15:28:15'),
+	(4, 'test2', 'test2@com', '$2y$10$.Qj8jTYfewKpJw3Il5SiIObtkwx6z5/sv/bWfRU2vcsScZlMbcJ.m', 'admin', '2022-11-15 15:55:23');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

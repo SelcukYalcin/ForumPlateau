@@ -2,18 +2,6 @@
 $topics = (!$result["data"]['topics']) ? [] : $result["data"]['topics'];
 $categorie = $result["data"]['categorie'];
 ?>
-<h3>Ajouter un Topic</h3>
-<form action= "index.php?ctrl=forum&action=addTopic&id=<?= $categorie->getId() ?>" method="POST">
-    <label for="name">
-        Titre  Topic: <br>
-    </label>
-        <input type="text" name="title" id="name" required> <br>
-    <label for="text">
-        Post: <br>
-    </label>
-    <textarea name="texte" id="text" required></textarea><br>
-    <input type="submit" value="Ajouter">
-</form>
 
 <h1>Topics de la Catégorie <?= $categorie ?> :</h1>
 <?php
@@ -39,7 +27,18 @@ $categorie = $result["data"]['categorie'];
         }
     }
 ?>
-
+<h3>Ajouter un Topic</h3>
+<form action= "index.php?ctrl=forum&action=addTopic&id=<?= $categorie->getId() ?>" method="POST">
+    <label for="name">
+        Titre  Topic: <br>
+    </label>
+        <input type="text" name="title" id="title" required> <br>
+    <label for="text">
+        Post: <br>
+    </label>
+    <textarea name="texte" id="texte" required></textarea><br>
+    <input type="submit" name="submit" value="Ajouter">
+</form>
 
 
 

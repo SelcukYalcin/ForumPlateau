@@ -15,6 +15,7 @@
         }
         // RECUPERER UNE CATEGORIE SELON LE LIBELLE
         public function findOneByLibelle($libelle){
+            parent::connect();
             $sql = "SELECT *
                     FROM ".$this->tableName." c
                     WHERE c.libelle = :libelle";           

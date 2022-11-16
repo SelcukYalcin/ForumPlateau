@@ -16,7 +16,7 @@
         {           
             $topicManager = new TopicManager();
             return [
-                "view" => VIEW_DIR."forum/listTopicsByCategorie.php",
+                "view" => VIEW_DIR."forum/listTopicsByIdCategorie.php",
                 "data" => [
                     "topics" => $topicManager->findAll(["dateTopic", "DESC"]),
                 ]
@@ -76,9 +76,10 @@
             {
                 $newTopic = ["title"=> $title, "user_id"=> $user, "categorie_id" => $id];                   
                 $topicId = $topicManager->add($newTopic);  
-                $newPost=["texte"=>$texte,"topic_id"=>$topicId ,"user_id"=>$user];
+                $newPost=["texte"=>$texte, "topic_id"=>$topicId , "user_id"=>$user];
                 $postManager->add($newPost);  
                 $this->redirectTo("forum", "listTopicsByIdCategorie", $id);
+                // Session::addFlash('success', "Topic ajouté avec Succès !");
             } else{}                           
         }
 
@@ -91,9 +92,10 @@
 
             if($texte)
             {
-                $newPost= ["texte" => $texte, "user_id" => $user, "topic_id" => $id, ];
+                $newPost= ["texte" => $texte, "user_id" => $user, "topic_id" => $id];
                 $postManager ->add($newPost);
                 $this->redirectTo("forum", "listPostsByIdTopic", $id);
+                // Session::addFlash('success', "Message ajouté avec Succès !");
             }
         }                   
 }
