@@ -27,4 +27,15 @@
                         $this->className
                     );
         }
+
+        // public function editTopic($id, $title)
+        // {
+        //     parent::connect();
+        //     $sql = "UPDATE topic
+        //             SET title = :title
+        //             WHERE id_topic = :id";
+                    
+            
+        //     DAO::update($sql, ["id"=>$id,"title"=>$title]);
+        // }
     }

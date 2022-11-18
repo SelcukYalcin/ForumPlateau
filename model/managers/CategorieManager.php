@@ -7,7 +7,7 @@
     class CategorieManager extends Manager
     {
         protected $className = "Model\Entities\Categorie";
-        protected $tableName = "Categorie";
+        protected $tableName = "categorie";
         // CONSTRUCTEUR
         public function __construct()
         {
@@ -23,16 +23,17 @@
                     return $this->getOneOrNullResult(
                         DAO::select($sql, ['libelle' => $libelle], false), 
                         $this->className
-                    );
-        }
+                    ); 
+        }  
         // EDITER UNE CATEGORIE
-        public function editCategorie($libelle, $id)
-        {
-            $sql = "UPDATE categorie
+        public function editCategorie($id, $libelle) 
+        {  
+            $sql =" UPDATE categorie
                     SET libelle = :libelle
-                    WHERE id_categorie = :id";
+                    WHERE id_categorie = :id ";
                     
-                        DAO::update($sql, ["id"=>$id, "libelle" => $libelle]);
+                    DAO::update($sql, ["id"=>$id, "libelle"=>$libelle]); 
+                    
 
         }
     }

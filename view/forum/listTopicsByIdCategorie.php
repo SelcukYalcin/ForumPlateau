@@ -1,7 +1,6 @@
 <?php
 $topics = (!$result["data"]['topics']) ? [] : $result["data"]['topics'];
 $categorie = $result["data"]['categorie'];
-// var_dump($categorie)
 ?>
 
 <h1>Topics de la Catégorie <?= $categorie ?> :</h1>

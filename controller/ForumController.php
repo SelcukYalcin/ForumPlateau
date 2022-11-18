@@ -82,7 +82,7 @@
             $postManager = new PostManager();
             $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $user = \App\Session::getUser()->getId();
+            $user = $id=1;
             
             if($title && $texte)
             {
@@ -99,7 +99,7 @@
             $topicManager = new TopicManager();
             $postManager = new PostManager();
             $texte = filter_input(INPUT_POST, "texte", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $user = \App\Session::getUser()->getId();
+            $user = \App\Session::getUser()->getId(); var_dump($user); die;
 
             if($texte)
             {
@@ -109,18 +109,37 @@
             }
         } 
         
-        public function editCategorie($id) {
+        public function editCategorie($id)
+        {
             $categorieManager = new CategorieManager();          
             $libelle = filter_input(INPUT_POST, "libelle", FILTER_SANITIZE_SPECIAL_CHARS);
-            var_dump($libelle); die;
-            if($libelle) {
-                $categorieManager->editCategorie($id, $libelle);
-                $this->redirectTo("forum","listCategories");
+            if($libelle) 
+            {
+                $categorieManager->editCategorie($id, $libelle); 
+                $this->redirectTo("forum","listCategories"); 
             }
 
             return [
                 "view" => VIEW_DIR."forum/editionCategorie.php",
                 "data" => ["categorie" => $categorieManager->findOneById($id)]
+            ];
+        }
+
+        public function editTopic($id)
+        {
+            $topicManager = new TopicManager();
+            $topic = $topicManager->findOneById($id);
+ 
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+             
+            if($title)
+            {
+                 $topicManager->editTopic($id,$title);
+                 $this->redirectTo("forum","listTopicsByIdCategorie",$topic->getCategorie()->getId());
+            }
+            return[
+             "view" => VIEW_DIR."forum/editionTopic.php",
+             "data" => ["topic" => $topicManager->findOneById($id)]
             ];
         }
         
