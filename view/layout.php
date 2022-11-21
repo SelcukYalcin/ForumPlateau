@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="public/css/style.css">
     <title>FORUM</title>
@@ -18,37 +19,40 @@
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
 
             <header>
+                <div class=headbar>
+                    FORUM PLATEAU
+                </div>
                 <nav>
                     <div id="nav-left">
-                        <a href="/ForumPlateau/"><h1>Accueil</h1></a><br>
+                        <a href="/ForumPlateau/"><i class="fa-solid fa-house"></i>  Accueil</a>
                         <?php
                         if(App\Session::isAdmin()){
                             ?>
-                            <a href="index.php?ctrl=home&action=users"><h2>Voir la liste des gens</h2></a>
-                          
+                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>                         
                             <?php
                         }
                         ?>
                     </div>
                     <div id="nav-right">
-                    <?php
-                        
+                    <?php                       
                         if(App\Session::getUser()){
                             ?>
-                            <a href="index.php?ctrl=forum&action=listCategories"><h1>La Liste des Catégories</h1></a><br>
+                            <a href="index.php?ctrl=forum&action=listCategories">Catégories</a><br>
                             <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a><br>
                             <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
                             <?php
                         }
                         else{
-                            ?>
-                            <a href="index.php?ctrl=security&action=login">Connexion</a><br>
-                            <a href="index.php?ctrl=security&action=register">Inscription</a><br>
-                            <a href="index.php?ctrl=forum&action=listCategories">La Liste des Catégories</a><br>
+                            ?> 
+                            <div class=liste>                           
+                            <a href="index.php?ctrl=forum&action=listCategories">Catégories</a>
+                            </div>
+                            <div>
+                                <a href="index.php?ctrl=security&action=login">Connexion</a>
+                                <a href="index.php?ctrl=security&action=register">Inscription</a>
+                            </div>
                         <?php
-                        }
-                   
-                        
+                        }                                         
                     ?>
                     </div>
                 </nav>

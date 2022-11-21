@@ -2,7 +2,7 @@
 $categories = $result["data"]['categories'];  
 ?>
 
-<h1>Liste des Catégories :</h1>
+<h2>Catégories :</h2>
 
 <?php
 foreach($categories as $categorie ){
@@ -15,12 +15,12 @@ foreach($categories as $categorie ){
     <?php } ?>
 
     <div >
-    <h2>Ajout d'une Catégorie</h2>
     <form action="index.php?ctrl=forum&action=ajoutCategorie" method="post">
         <label >
-            <input type="text" name="libelle"  required>
-        </label>
-        <input type="submit" value="Ajouter">
+            Ajout d'une Catégorie
+        </label><br>
+            <input type="text" name="libelle"  required>       
+            <input type="submit" value="Ajouter">
     </form>
     </div>
 
